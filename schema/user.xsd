@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+    elementFormDefault="qualified"
+    vc:minVersion="1.1"
+    targetNamespace="http://www.copyrights.com/user"
+    xmlns:user="http://www.copyrights.com/user">
+    <xs:complexType name="user">
+        <xs:attribute name="id" type="xs:anyURI" use="required" />
+        <xs:attribute name="first_name" type="xs:string">
+        </xs:attribute>
+        <xs:attribute name="last_name" type="xs:string">
+        </xs:attribute>
+        <!-- <xs:attribute name="role" type="xs:string">
+        </xs:attribute> -->
+        <xs:attribute name="email" type="xs:string">
+        </xs:attribute>
+        <xs:attribute name="username" type="xs:string">
+        </xs:attribute>
+        <xs:attribute name="password">
+            <xs:simpleType>
+                <xs:restriction base="xs:string">
+                    <xs:minLength value="8" />
+                </xs:restriction>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+    <xs:element name="user" type="user:user">
+    </xs:element>
+</xs:schema>

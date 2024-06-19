@@ -1,0 +1,22 @@
+services:
+  db:
+    image: mongo
+    restart: always
+    environment:
+        - MONGO_INITDB_ROOT_USERNAME=admin
+        - MONGO_INITDB_ROOT_PASSWORD=password123
+        - MONGO_INITDB_DATABASE=copyrights_development
+    ports:
+        - 27017:27017
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - ./mongodb_data:/data/db
+  copyrights:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: bash -c "bundle exec rails db:seed && bundle exec rails server -b 0.0.0.0"
+    ports:
+      - 3000:3000
+    depends_on:
+      - db

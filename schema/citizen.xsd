@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
+    elementFormDefault="qualified"
+    vc:minVersion="1.1"
+    targetNamespace="http://www.copyrights.com/patient"
+    xmlns:patient="http://www.copyrights.com/patient"
+    xmlns:user="http://www.copyrights.com/user">
+    <xs:import namespace="http://www.copyrights.com/user" schemaLocation="user.xsd" />
+    <xs:complexType id="citizen" name="citizen">
+        <xs:complexContent>
+            <xs:extension base="user:user">
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+    <xs:attribute name="id" type="xs:anyURI" />
+</xs:schema>
