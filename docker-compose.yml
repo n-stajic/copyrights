@@ -11,12 +11,23 @@ services:
     volumes:
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
       - ./mongodb_data:/data/db
-  copyrights:
+  backend:
     build:
       context: .
       dockerfile: Dockerfile
+    environment:
+      - RAILS_MASTER_KEY=6e21b89dc1b1fb24336d10ad61daf3cc
     command: bash -c "bundle exec rails db:seed && bundle exec rails server -b 0.0.0.0"
     ports:
       - 3000:3000
     depends_on:
       - db
+  frontend:
+      build:
+        context: frontend
+      ports:
+        - 3001:3001
+      volumes:
+        - ./frontend/src:/code/src
+      depends_on:
+        - backend

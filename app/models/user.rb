@@ -32,6 +32,10 @@ class User
     ## Rememberable
     field :remember_created_at, type: Time
 
+    def self.primary_key
+        'id'
+    end
+
     ## Trackable
     # field :sign_in_count,      type: Integer, default: 0
     # field :current_sign_in_at, type: Time
@@ -56,5 +60,9 @@ class User
 
     def is_clerk?
         return user_type == CLERK
+    end
+
+    def update_column(column, value)
+        update_attribute(column, value)
     end
 end

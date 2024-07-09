@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class Users::RegistrationsController < Devise::RegistrationsController
+    respond_to :xml
+
     # include RackSessionsFix
 
     # before_action :configure_sign_up_params, only: [:create]
@@ -66,7 +68,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
     def respond_with(current_user, _opts = {})
         if resource.persisted?
-            render xml: current_user, status: :ok
+            render xml: {
+                token: request.env['warden-jwt_auth.token'],
+                user: current_user
+            }, status: :ok
         else
             render xml: {
                 message: "User couldn't be created successfully. #{current_user.errors.full_messages.to_sentence}"

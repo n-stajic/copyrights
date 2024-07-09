@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     defaults: { format: :xml }
 
     get "/a1_forms", to: 'a1_forms#index'
+    get "/a1_forms/:id", to: 'a1_forms#show'
     post "/a1_forms", to: 'a1_forms#create'
     post "/a1_forms/search", to: 'a1_forms#search'
     post "/a1_forms/process_form", to: 'a1_forms#process_form'

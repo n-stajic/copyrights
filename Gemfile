@@ -29,6 +29,12 @@ gem "json"
 gem "actionpack-xml_parser"
 gem "rexml"
 
+# Used to alow cors
+gem 'rack-cors'
+
+# For reding .env file
+gem 'dotenv'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
