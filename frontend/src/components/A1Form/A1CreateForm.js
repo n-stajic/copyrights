@@ -35,7 +35,7 @@ async function createA1Form(a1Form, setError, setHelperText) {
         })
         .catch(err => {
             setError(true)
-            setHelperText("Required fields are not filled")
+            setHelperText("Obavezna polja nisu popunjena")
         });
 }
 
@@ -58,11 +58,11 @@ export default function A1CreateForm() {
     const handleSubmit = async e => {
         e.preventDefault();
         const data = await createA1Form({
-            submitter , pseudonym, proxy, artTitle, artData, artType, artFormat, authorData, createdDuringEmployment, useIntentions
+            submitter, pseudonym, proxy, artTitle, artData, artType, artFormat, authorData, createdDuringEmployment, useIntentions
         }, setError, setHelperText
         );
-        console.log("data: ",data)
-        if(data !== undefined) {
+        console.log("data: ", data)
+        if (data !== undefined) {
             window.location.href = '/a1-forms';
         }
     }
@@ -75,89 +75,110 @@ export default function A1CreateForm() {
             alignItems="center"
         >
             <Typography variant="h3" gutterBottom sx={{ pt: 2 }} >
-                Create A1 Form
+                Podnesi A-1 obrazac
             </Typography>
             <Box component="form"
                 sx={{
-                    '& .MuiTextField-root': { m: 1, width: '25ch' },
+                    '& .MuiTextField-root': { p: 1 },
+                    '& .MuiTypography-root': { p: 1 },
                 }}>
+                <Typography variant="p" >
+                    Podnosilac - ime, prezime, adresa i državljansto autra ili drugog nosioca autorskog prava ako je podnosilac fizičko lice,
+                    odnosno poslovno ime i sedište nosioca autorskog prava ako je podnosilac pravno lice*:
+                </Typography>
                 <TextField
+                    fullWidth
                     required
+                    multiline
+                    rows={4}
                     error={error && submitter.length === 0}
-                    id="outlined-required"
-                    label="submitter"
-                    variant="standard"
+                    id="submitter"
                     onChange={e => setSubmitter(e.target.value)}
                 />
-                <br />
+                <Typography variant="p" >
+                    Pseudonim ili znak autora, (ako ga ima):
+                </Typography>
                 <TextField
-                    id="outlined-required"
-                    label="pseudonym"
-                    variant="standard"
+                    fullWidth
+                    id="pseudonym"
                     onChange={e => setPseudonym(e.target.value)}
                 />
-                <br />
+                <Typography variant="p" >
+                    Ime, przime i adresa punomoćnika, ako se prijava podnosi preko punomoćnika:
+                </Typography>
                 <TextField
-                    id="outlined-required"
-                    label="proxy"
-                    variant="standard"
+                    fullWidth
+                    multiline
+                    rows={4}
+                    id="proxy"
                     onChange={e => setProxy(e.target.value)}
                 />
-                <br />
+                <Typography variant="p" >
+                    Naslov autorskog dela, odnosno alternativni naslov, ako ga ima, po kome autorsko delo može da se identifikuje*:
+                </Typography>
                 <TextField
+                    fullWidth
                     required
                     error={error && artTitle.length === 0}
-                    id="outlined-required"
-                    label="art title"
-                    variant="standard"
+                    id="art-title"
                     onChange={e => setArtTitle(e.target.value)}
                 />
-                <br />
+                <Typography variant="p" >
+                    Podaci o naslovu autorksog dela na kome se zasniva delo prerade, ako je u pitanju autorsko delo prerade, kao i podatak o autoru izvornog dela:
+                </Typography>
                 <TextField
-                    id="outlined-textarea"
-                    label="art data"
-                    variant="standard"
                     multiline
+                    fullWidth
+                    rows={4}
+                    id="art-data"
                     onChange={e => setArtData(e.target.value)}
                 />
-                <br />
+                <Typography variant="p" >
+                    Podaci o vrsti autorskog dela (književno delo, muzičko delo, likovno delo, računarski program i dr.)*:
+                </Typography>
                 <TextField
+                    fullWidth
                     required
                     error={error && artType.length === 0}
-                    id="outlined-required"
-                    label="art type"
-                    variant="standard"
+                    id="art-type"
                     onChange={e => setArtType(e.target.value)}
                 />
-                <br />
+                <Typography variant="p" >
+                    Podaci o formi zapisa autorskog dela (štampani tekst, optički disk i slično)*:
+                </Typography>
                 <TextField
+                    fullWidth
                     required
                     error={error && artFormat.length === 0}
-                    id="outlined-required"
-                    label="art format"
-                    variant="standard"
+                    id="art-format"
                     onChange={e => setArtFormat(e.target.value)}
                 />
-                <br />
+                <Typography variant="p" >
+                    Podaci o autoru ako podnosilac prijave iz tačke 1. ovog zahteva nije autor i to:
+                    prezime, ime, adresa i državljanstvo autora (grupe autora ili koautora), ako su u pitanju jedan ili više
+                    autora koji nisu živi, imena autora i godina smrti autora a ako je u pitanju autorsko delo anonimnog autora
+                    navod da je autorsko delo delo anonimnog autora:
+                </Typography>
                 <TextField
-                    id="outlined-required"
-                    label="author data"
-                    variant="standard"
+                    fullWidth
+                    id="author-data"
                     onChange={e => setAuthorData(e.target.value)}
                 />
-                <br />
+                <Typography variant="p" >
+                    Podatak da li je autorsko delo stvoreno u radnom odnosu:
+                </Typography>
                 <TextField
-                    id="outlined-textarea"
-                    label="created during employment"
+                    fullWidth
                     multiline
-                    variant="standard"
+                    id="created-during-employment"
                     onChange={e => setCreatedDuringEmployment(e.target.value)}
                 />
-                <br />
+                <Typography variant="p" >
+                    Način korišćenja autorskog dela ili nameravani način korišćenja autorskog dela:
+                </Typography>
                 <TextField
-                    id="outlined-required"
-                    label="use intentions"
-                    variant="standard"
+                    fullWidth
+                    id="use-intentions"
                     onChange={e => setUseIntentions(e.target.value)}
                 />
                 <br />
@@ -165,7 +186,7 @@ export default function A1CreateForm() {
                     {helperText}
                 </Typography>
                 <br />
-                <Button variant="contained" sx={{ mt: 2 }} onClick={handleSubmit}>Create</Button>
+                <Button variant="contained" sx={{ mt: 2, mb: 2 }} onClick={handleSubmit}>Podnesi zahtev</Button>
             </Box>
         </Grid>
     )

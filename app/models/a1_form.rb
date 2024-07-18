@@ -8,9 +8,13 @@ class A1Form
     REJECTED = "rejected"
     STATUSES = [REVIEW, APPROVED, REJECTED].freeze
 
-    validates :submitter, :art_title, :art_type, :art_format, presence: true
+    validates :submitter, :art_title, :art_type, :art_format, :form_number, presence: true
+    validates :form_number, uniqueness: true
     validates :status, inclusion: { in: STATUSES }
 
+    before_create :set_form_number
+
+    field :form_number,               type: String
     field :submitter,                 type: String
     field :pseudonym,                 type: String
     field :proxy,                     type: String
@@ -21,6 +25,7 @@ class A1Form
     field :author_data,               type: String
     field :created_during_employment, type: String
     field :use_intentions,            type: String
+    field :aditional_data,            type: String
     field :status,                    type: String, default: REVIEW
     field :processed_at,              type: Date
     field :comment,                   type: String
@@ -31,7 +36,7 @@ class A1Form
     scope :review, -> () { where(status: REVIEW) }
 
     def self.search(search_param)
-        search_phrase = /#{Regexp.escape(search_param)}/
+        search_phrase = /#{Regexp.escape(search_param)}/i
 
         A1Form.where(submitter: search_phrase).
             or(pseudonym: search_phrase).
@@ -42,6 +47,14 @@ class A1Form
             or(art_format: search_phrase).
             or(author_data: search_phrase).
             or(created_during_employment: search_phrase).
-            or(use_intentions: search_phrase)
+            or(use_intentions: search_phrase).
+            or(aditional_data: search_phrase).
+            or(comment: search_phrase)
+    end
+
+    private
+    
+    def set_form_number
+        self.form_number = "A-" + rand(10000000..99999999)
     end
 end

@@ -55,13 +55,12 @@ export default function Search() {
                 sx={{ minHeight: '100vh' }}
             >
                 <Typography variant="h3" gutterBottom >
-                    Search
+                    Pretraga
                 </Typography>
                 <TextField
                     required
-                    id="outlined-required"
+                    id="search"
                     label="search"
-                    variant="standard"
                     onChange={e => setSearchTerm(e.target.value)}
                 />
                 <br />

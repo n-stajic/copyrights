@@ -112,119 +112,139 @@ export default function A1FormShow() {
         handleClick("rejected")
     }
 
+    const translateStatus = (status) => {
+        switch (status) {
+            case "in_review":
+                return "Na čekanju"
+            case "approved":
+                return "Prihvaćen"
+            case "rejected":
+                return "Odbijen"
+            default:
+                return ""
+        }
+    }
+
     return (
         <Grid
             container
             spacing={0}
             direction="column"
-            alignItems="center"
         >
-            <Typography variant="h3" gutterBottom sx={{ pt: 2 }} >
-                A1 Form
+            <Typography variant="h3" gutterBottom sx={{ pt: 2, pl: 2 }} >
+                Obrazac A-1
             </Typography>
-            <TextField
-                sx={{ m: 1 }}
-                disabled
-                id="outlined-required"
-                label="submitter"
-                value={submitter}
-            />
-            <TextField
-                sx={{ m: 1 }}
-                disabled
-                id="outlined-required"
-                label="pseudonym"
-                value={pseudonym}
-            />
-            <TextField
-                sx={{ m: 1 }}
-                disabled
-                id="outlined-required"
-                label="proxy"
-                value={proxy}
-            />
-            <TextField
-                sx={{ m: 1 }}
-                disabled
-                id="outlined-required"
-                label="artTitle"
-                value={artTitle}
-            />
-            <TextField
-                sx={{ m: 1 }}
-                disabled
-                id="outlined-required"
-                label="artData"
-                value={artData}
-            />
-            <TextField
-                sx={{ m: 1 }}
-                disabled
-                id="outlined-required"
-                label="artType"
-                value={artType}
-            />
-            <TextField
-                sx={{ m: 1 }}
-                disabled
-                id="outlined-required"
-                label="artFormat"
-                value={artFormat}
-            />
-            <TextField
-                sx={{ m: 1 }}
-                disabled
-                id="outlined-required"
-                label="authorData"
-                value={authorData}
-            />
-            <TextField
-                sx={{ m: 1 }}
-                disabled
-                id="outlined-required"
-                label="createdDuringEmployment"
-                value={createdDuringEmployment}
-            />
-            <TextField
-                sx={{ m: 1 }}
-                disabled
-                id="outlined-required"
-                label="useIntentions"
-                value={useIntentions}
-            />
-            <TextField
-                sx={{ m: 1 }}
-                disabled
-                id="outlined-required"
-                label="form status"
-                value={formStatus}
-            />
-            <TextField
-                sx={{ m: 1 }}
-                disabled
-                id="outlined-required"
-                label="comment"
-                value={comment}
-            />
+
+            <Typography variant="p" sx={{ pl: 2 }} >
+                Podnosilac - ime, prezime, adresa i državljansto autra ili drugog nosioca autorskog prava ako je podnosilac fizičko lice,
+                odnosno poslovno ime i sedište nosioca autorskog prava ako je podnosilac pravno lice:
+            </Typography>
+            <Typography variant="p" sx={{ pl: 4, pb: 2 }}>
+                {submitter}
+            </Typography>
+
+            <Typography variant="p" sx={{ pl: 2 }} >
+                Pseudonim ili znak autora, (ako ga ima):
+            </Typography>
+            <Typography variant="p" sx={{ pl: 4, pb: 2 }}>
+                {pseudonym}
+            </Typography>
+
+            <Typography variant="p" sx={{ pl: 2 }} >
+                Ime, przime i adresa punomoćnika, ako se prijava podnosi preko punomoćnika:
+            </Typography>
+            <Typography variant="p" sx={{ pl: 4, pb: 2 }}>
+                {proxy}
+            </Typography>
+
+            <Typography variant="p" sx={{ pl: 2 }} >
+                Naslov autorskog dela, odnosno alternativni naslov, ako ga ima, po kome autorsko delo može da se identifikujes:
+            </Typography>
+            <Typography variant="p" sx={{ pl: 4, pb: 2 }}>
+                {artTitle}
+            </Typography>
+
+            <Typography variant="p" sx={{ pl: 2 }} >
+                Podaci o naslovu autorksog dela na kome se zasniva delo prerade, ako je u pitanju autorsko delo prerade, kao i podatak o autoru izvornog dela:
+            </Typography>
+            <Typography variant="p" sx={{ pl: 4, pb: 2 }}>
+                {artData}
+            </Typography>
+
+            <Typography variant="p" sx={{ pl: 2 }} >
+                Podaci o vrsti autorskog dela (književno delo, muzičko delo, likovno delo, računarski program i dr.):
+            </Typography>
+            <Typography variant="p" sx={{ pl: 4, pb: 2 }}>
+                {artType}
+            </Typography>
+
+            <Typography variant="p" sx={{ pl: 2 }} >
+                Podaci o formi zapisa autorskog dela (štampani tekst, optički disk i slično):
+            </Typography>
+            <Typography variant="p" sx={{ pl: 4, pb: 2 }}>
+                {artFormat}
+            </Typography>
+
+            <Typography variant="p" sx={{ pl: 2 }} >
+                Podaci o autoru ako podnosilac prijave iz tačke 1. ovog zahteva nije autor i to:
+                prezime, ime, adresa i državljanstvo autora (grupe autora ili koautora), ako su u pitanju jedan ili više
+                autora koji nisu živi, imena autora i godina smrti autora a ako je u pitanju autorsko delo anonimnog autora
+                navod da je autorsko delo delo anonimnog autora:
+            </Typography>
+            <Typography variant="p" sx={{ pl: 4, pb: 2 }}>
+                {authorData}
+            </Typography>
+
+            <Typography variant="p" sx={{ pl: 2 }} >
+                Podatak da li je autorsko delo stvoreno u radnom odnosu:
+            </Typography>
+            <Typography variant="p" sx={{ pl: 4, pb: 2 }}>
+                {createdDuringEmployment}
+            </Typography>
+
+            <Typography variant="p" sx={{ pl: 2 }} >
+                Način korišćenja autorskog dela ili nameravani način korišćenja autorskog dela:
+            </Typography>
+            <Typography variant="p" sx={{ pl: 4, pb: 2 }}>
+                {useIntentions}
+            </Typography>
+
+
+            <Typography variant="p" sx={{ pl: 2 }} >
+                Status prijave:
+            </Typography>
+            <Typography variant="p" sx={{ pl: 4, pb: 2 }}>
+                {translateStatus(formStatus)}
+            </Typography>
+
+            {comment && <div>
+                <Typography variant="p" sx={{ pl: 2 }} >
+                    Obrazloženje:
+                </Typography>
+                <Typography variant="p" sx={{ pl: 4, pb: 2 }}>
+                    {comment}
+                </Typography>
+            </div>}
             <br />
-            {userType === "clerk" && comment === 'in_review' && <Box sx={{
+            {userType === 'clerk' && formStatus === 'in_review' && <Box sx={{
                 display: 'flex',
                 flexDirection: 'column',
             }}>
-                <Typography variant="h3" gutterBottom sx={{ ml: 2, pt: 2 }} >
-                    Process form
+                <Typography variant="h5" gutterBottom sx={{ pl: 2, pt: 2 }} >
+                    Procesiraj obrazac
                 </Typography>
                 <TextField
                     multiline
-                    sx={{ mt: 2, mr: 2 }}
-                    id="outlined-required"
-                    label="comment"
+                    fullWidth
+                    rows={4}
+                    sx={{ pt: 2, pl: 2, pr: 2 }}
+                    id="auditor-comment"
                     onChange={e => setAuditorComment(e.target.value)}
                 />
                 <br />
                 <Box>
-                    <Button variant="contained" sx={{ mr: 2, mb: 2 }} onClick={approve}>Approve</Button>
-                    <Button variant="contained" sx={{ mb: 2 }} onClick={reject}>Reject</Button>
+                    <Button variant="contained" sx={{ mr: 2, mb: 2, ml: 2 }} onClick={approve}>Prihvati</Button>
+                    <Button variant="contained" sx={{ mb: 2 }} onClick={reject}>Odbij</Button>
                 </Box>
             </Box>}
         </Grid>

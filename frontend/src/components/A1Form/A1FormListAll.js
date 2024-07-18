@@ -42,7 +42,7 @@ export default function A1FormListAll() {
         <div>
             {userType === "citizen" &&
                     <Grid sx={{ m: 2, pr: 3 }} container justifyContent="flex-end">
-                        <Button variant="contained" onClick={() => window.location.href = '/a1-forms/create'}>Create A1 Form</Button>
+                        <Button variant="contained" onClick={() => window.location.href = '/a1-forms/create'}>Napravi A-1 obrazac</Button>
                     </Grid>
             }
             {a1Forms.length > 0 && <A1FormTable rows={a1Forms} />}

@@ -14,7 +14,10 @@ Rails.application.routes.draw do
 
     get "/a1_forms", to: 'a1_forms#index'
     get "/a1_forms/:id", to: 'a1_forms#show'
+    get "/a1_forms/xhtml_download/:id", to: 'a1_forms#xhtml_download'
+    get "/a1_forms/pdf_download/:id", to: 'a1_forms#pdf_download'
     post "/a1_forms", to: 'a1_forms#create'
     post "/a1_forms/search", to: 'a1_forms#search'
     post "/a1_forms/process_form", to: 'a1_forms#process_form'
+    post "/a1_forms/generate_report", to: 'a1_forms#generate_report'
 end

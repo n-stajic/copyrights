@@ -54,17 +54,17 @@ export default function TopBar() {
                     </Link>
                     <Link href="/a1-forms" color="inherit">
                         <Typography variant="h6" color="inherit" component="div" sx={{ mr: 2 }}>
-                            A1 Forms
+                            A-1 obrasci
                         </Typography>
                     </Link>
                     <Link href="/search" color="inherit" sx={{ flexGrow: 1 }}>
                         <Typography variant="h6" color="inherit" component="div">
-                            Search
+                            Pretraga
                         </Typography>
                     </Link>
                     <Link href="#" onClick={handleSubmit} color="inherit" justify="flex-end">
                         <Typography variant="h6" color="inherit" component="div">
-                            Logout
+                            Izloguj se
                         </Typography>
                     </Link>
                 </Toolbar>

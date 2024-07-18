@@ -29,6 +29,8 @@ gem "json"
 gem "actionpack-xml_parser"
 gem "rexml"
 
+gem "prawn"
+
 # Used to alow cors
 gem 'rack-cors'
 

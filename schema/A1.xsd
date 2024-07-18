@@ -8,20 +8,43 @@
     <xs:element name="user">
         <xs:complexType>
             <xs:sequence>
-                <xs:element name="name" type="xs:string">
+                <xs:element name="form_number" type="xs:string">
                 </xs:element>
-                <xs:element name="lastname" type="xs:string">
+                <xs:element name="submitter" type="xs:string">
                 </xs:element>
-                <xs:element name="role" type="xs:string">
+                <xs:element name="pseudonym" type="xs:string">
                 </xs:element>
-                <xs:element name="username" type="xs:string">
+                <xs:element name="proxy" type="xs:string">
                 </xs:element>
-                <xs:element name="password">
-                    <xs:simpleType>
-                        <xs:restriction base="xs:string">
-                            <xs:minLength value="8" />
-                        </xs:restriction>
-                    </xs:simpleType>
+                <xs:element name="art_title" type="xs:string">
+                </xs:element>
+                <xs:element name="art_data" type="xs:string">
+                </xs:element>
+                <xs:element name="art_type" type="xs:string">
+                </xs:element>
+                <xs:element name="art_format" type="xs:string">
+                </xs:element>
+                <xs:element name="author_data" type="xs:string">
+                </xs:element>
+                <xs:element name="created_during_employment" type="xs:string">
+                </xs:element>
+                <xs:element name="use_intentions" type="xs:string">
+                </xs:element>
+                <xs:element name="aditional_data" type="xs:string">
+                </xs:element>
+                <xs:element name="status" type="xs:string">
+                </xs:element>
+                <xs:element name="processed_at" type="xs:string">
+                </xs:element>
+                <xs:element name="comment" type="xs:string">
+                </xs:element>
+                <xs:element name="created_at" type="xs:string">
+                </xs:element>
+                <xs:element name="updated_at" type="xs:string">
+                </xs:element>
+                <xs:element name="user_id" type="xs:string">
+                </xs:element>
+                <xs:element name="processed_by" type="xs:string">
                 </xs:element>
             </xs:sequence>
             <xs:attribute name="id" type="xs:anyURI" use="required" />

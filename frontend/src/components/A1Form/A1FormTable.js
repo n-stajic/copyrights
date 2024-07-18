@@ -10,12 +10,48 @@ import Typography from '@mui/material/Typography';
 import Grid from '@mui/material/Grid';
 import Button from '@mui/material/Button';
 
+import { saveAs } from 'file-saver'
+
+
+async function getDownloadPDFFile(a1FormId) {
+    var token = 'Bearer ' + localStorage.getItem("token");
+
+    return fetch(process.env.REACT_APP_BACKEND_URL + '/a1_forms/pdf_download/' + a1FormId, {
+        method: 'GET',
+        headers: {
+            'Authorization': token
+        }
+    })
+        .then(response => response.blob());
+}
+
+async function getDownloadXHTMLFile(a1FormId) {
+    var token = 'Bearer ' + localStorage.getItem("token");
+
+    return fetch(process.env.REACT_APP_BACKEND_URL + '/a1_forms/xhtml_download/' + a1FormId, {
+        method: 'GET',
+        headers: {
+            'Authorization': token
+        }
+    })
+        .then(response => response.blob());
+}
+
 export default function A1FormTable(a1Forms) {
+    const handleDownloadPDF = async (a1FormId) => {
+        getDownloadPDFFile(a1FormId)
+            .then(blob => saveAs(blob, "a1_form.pdf"))
+    }
+    const handleDownloadXHTML = async (a1FormId) => {
+        getDownloadXHTMLFile(a1FormId)
+            .then(blob => saveAs(blob, "a1_form.xhtml"))
+    }
+
     return (
         <TableContainer component={Paper}>
             <Grid container justifyContent="center">
                 <Typography variant="h4" color="inherit" component="div">
-                    A1 Forms
+                    A-1 obrasci
                 </Typography>
             </Grid>
             <Table sx={{ minWidth: 600 }} aria-label="simple table">
@@ -46,8 +82,15 @@ export default function A1FormTable(a1Forms) {
                                 <TableCell align="right">{a1Form.getElementsByTagName("art-type")[0].value}</TableCell>
                                 <TableCell align="right">{a1Form.getElementsByTagName("art-format")[0].value}</TableCell>
                                 <TableCell align="right">
-                                    <Button variant="contained" onClick={() => window.location.href = '/a1-forms/' + a1Form.getElementsByTagName("_id")[0].value}>
-                                        Show
+                                    <Button variant="contained" onClick={() => window.location.href = '/a1-forms/' + a1Form.getElementsByTagName("_id")[0].value} sx={{ mr: 2 }}>
+                                        Prikaži
+                                    </Button>
+                                    <Button variant="contained" value={a1Form.getElementsByTagName("_id")[0].value} onClick={e => handleDownloadPDF(e.target.value)} sx={{ mr: 2 }}>
+                                        Preuzmi PDF
+                                    </Button>
+                                    <br />
+                                    <Button variant="contained" value={a1Form.getElementsByTagName("_id")[0].value} onClick={e => handleDownloadXHTML(e.target.value)} sx={{ mr: 2, mt: 2 }}>
+                                        Preuzmi XHTML
                                     </Button>
                                 </TableCell>
                             </TableRow>
