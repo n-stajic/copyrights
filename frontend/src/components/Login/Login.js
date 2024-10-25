@@ -32,10 +32,6 @@ export default function Login() {
     const [error, setError] = useState();
     const [helperText, setHelperText] = useState();
 
-    if (localStorage.getItem("token")) {
-        window.location.href = '/';
-    }
-
     const handleSubmit = async e => {
         e.preventDefault();
         const data = await loginUser(

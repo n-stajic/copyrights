@@ -6,6 +6,7 @@ class A1FormsController < ApplicationController
     before_action :check_if_clerk!, only: [:process_form, :generate_report]
 
     def index
+        a1_forms = []
         if current_user.is_citizen?
             a1_forms = A1Form.where(user: current_user)
         elsif current_user.is_clerk?

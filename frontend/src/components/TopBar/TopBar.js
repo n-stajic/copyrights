@@ -35,12 +35,14 @@ async function logoutUser() {
 export default function TopBar() {
     const handleSubmit = async e => {
         e.preventDefault();
-        const data = await logoutUser();
-        if (data !== undefined) {
-            localStorage.removeItem("token");
-            localStorage.removeItem("user_type");
-            window.location.href = '/';
-        }
+        await logoutUser();
+        localStorage.removeItem("token");
+        localStorage.removeItem("user_type");
+        window.location.href = '/';
+    }
+
+    if (!localStorage.getItem("token")) {
+        return ""
     }
 
     return (

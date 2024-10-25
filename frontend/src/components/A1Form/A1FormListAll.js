@@ -22,7 +22,10 @@ export default function A1FormListAll() {
             }
         })
             .then((response) => {
-                if (!response.ok) throw new Error(response.status);
+                if (response.status === 401){
+                    localStorage.removeItem("token");
+                    window.location.href = '/login';
+                }
                 else return response.text();
             })
             .then(text => {
