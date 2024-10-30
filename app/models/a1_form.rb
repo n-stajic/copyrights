@@ -12,7 +12,7 @@ class A1Form
     validates :form_number, uniqueness: true
     validates :status, inclusion: { in: STATUSES }
 
-    before_create :set_form_number
+    before_validation :set_form_number, on: [:create]
 
     field :form_number,               type: String
     field :submitter,                 type: String
@@ -46,7 +46,7 @@ class A1Form
             or(art_type: search_phrase).
             or(art_format: search_phrase).
             or(author_data: search_phrase).
-            or(created_during_employment: search_phrase).
+            or(created_during_employment: seaA1Formrch_phrase).
             or(use_intentions: search_phrase).
             or(aditional_data: search_phrase).
             or(comment: search_phrase)
@@ -55,6 +55,8 @@ class A1Form
     private
     
     def set_form_number
-        self.form_number = "A-" + rand(10000000..99999999)
+        if self.form_number.nil?
+            self.form_number = "A-" + rand(10000000..99999999).to_s
+        end
     end
 end
