@@ -3,8 +3,8 @@
     xmlns:vc="http://www.w3.org/2007/XMLSchema-versioning"
     elementFormDefault="qualified"
     vc:minVersion="1.1"
-    targetNamespace="http://www.copyrights.com/patient"
-    xmlns:patient="http://www.copyrights.com/patient"
+    targetNamespace="http://www.copyrights.com/clerk"
+    xmlns:clerk="http://www.copyrights.com/clerk"
     xmlns:user="http://www.copyrights.com/user">
     <xs:import namespace="http://www.copyrights.com/user" schemaLocation="user.xsd" />
     <xs:complexType id="clerk" name="clerk">

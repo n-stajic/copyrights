@@ -11,8 +11,8 @@
         </xs:attribute>
         <xs:attribute name="last_name" type="xs:string">
         </xs:attribute>
-        <!-- <xs:attribute name="role" type="xs:string">
-        </xs:attribute> -->
+        <xs:attribute name="user_type" type="xs:string">
+        </xs:attribute>
         <xs:attribute name="email" type="xs:string">
         </xs:attribute>
         <xs:attribute name="username" type="xs:string">
